@@ -1,7 +1,8 @@
 OSSO build of bpftrace
 ======================
 
-This enables builds for bpftrace 0.17.1 for *Ubuntu/Jammy*.
+This enables builds for bpftrace 0.17.1 for *Ubuntu/Jammy*. Also
+includes *Netflix* *bpftop* (v0.4.0) in /usr/sbin.
 
 
 ------------
@@ -16,27 +17,14 @@ And it will create the build files in ``Dockerfile.out/``.
 
 For example::
 
-    $ ls -1 Dockerfile.out/jammy/bpftrace_0.17.1-0osso0+ubu22.04/
-    bpftrace_0.17.1-0osso0+ubu22.04_amd64.buildinfo
-    bpftrace_0.17.1-0osso0+ubu22.04_amd64.changes
-    bpftrace_0.17.1-0osso0+ubu22.04_amd64.deb
-    bpftrace_0.17.1-0osso0+ubu22.04.debian.tar.xz
-    bpftrace_0.17.1-0osso0+ubu22.04.dsc
-    bpftrace_0.17.1.orig.tar.gz
-
-
-----
-TODO
-----
-
-* Include bpftop in the release:
-  https://github.com/Netflix/bpftop/releases
-
-* ``dpkg-shlibdeps: warning: package could avoid a useless dependency if
-  debian/bpftrace/usr/bin/bpftrace was not linked against libz.so.1 (it
-  uses none of the library's symbols)``
-
-* Try newer builds than 0.17.1.
+    $ ls -1 Dockerfile.out/jammy/bpftrace_0.19.1-0osso0+ubu22.04
+    bpftrace_0.19.1-0osso0+ubu22.04_amd64.buildinfo
+    bpftrace_0.19.1-0osso0+ubu22.04_amd64.changes
+    bpftrace_0.19.1-0osso0+ubu22.04_amd64.deb
+    bpftrace_0.19.1-0osso0+ubu22.04.debian.tar.xz
+    bpftrace_0.19.1-0osso0+ubu22.04.dsc
+    bpftrace_0.19.1.orig.tar.gz
+    bpftrace-dbgsym_0.19.1-0osso0+ubu22.04_amd64.ddeb
 
 
 -------

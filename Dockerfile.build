@@ -5,7 +5,7 @@ set -eu
 # Pass these on the command line.
 oscodename=${1:-ubuntu/jammy}  # ubuntu/jammy
 upname=bpftrace
-upversion=${2:-0.17.1}      # bpftrace version
+upversion=${2:-0.19.1}      # bpftrace version
 debepoch=
 debversion=${3:-0osso0}     # deb build version, e.g. 0osso2
 
