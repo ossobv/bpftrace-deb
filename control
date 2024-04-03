@@ -1,0 +1,39 @@
+Source: bpftrace
+Section: utils
+Priority: optional
+Maintainer: Vincent Bernat <bernat@debian.org>
+Standards-Version: 4.6.1
+Build-Depends: asciidoctor,
+               bison,
+               clang-14,
+               cmake,
+               debhelper-compat (= 13),
+               flex,
+               libcereal-dev,
+               libclang-14-dev,
+               libdw-dev,
+               libelf-dev,
+               libfl-dev,
+               libgmock-dev,
+               libgtest-dev,
+               llvm-14-dev,
+               pkg-config,
+               systemtap-sdt-dev,
+               zlib1g-dev
+Homepage: https://github.com/iovisor/bpftrace
+Vcs-Git: https://salsa.debian.org/debian/bpftrace.git
+Vcs-Browser: https://salsa.debian.org/debian/bpftrace
+
+Package: bpftrace
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Recommends: libc6-dev
+Description: high-level tracing language for Linux eBPF
+ BPFtrace is a high-level tracing language for Linux enhanced Berkeley
+ Packet Filter (eBPF) available in recent Linux kernels (4.x). BPFtrace
+ uses LLVM as a backend to compile scripts to BPF-bytecode and makes
+ use of BCC for interacting with the Linux BPF system, as well as
+ existing Linux tracing capabilities: kernel dynamic tracing (kprobes),
+ user-level dynamic tracing (uprobes), and tracepoints. The BPFtrace
+ language is inspired by awk and C, and predecessor tracers such as
+ DTrace and SystemTap.

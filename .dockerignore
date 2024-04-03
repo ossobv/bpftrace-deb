@@ -1,0 +1,9 @@
+/Dockerfile.build
+/Dockerfile.buildmany
+/Dockerfile.out
+/Dockerfile
+
+/.dockerignore
+/.git
+/.gitignore
+/.*swp

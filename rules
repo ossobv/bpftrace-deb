@@ -1,0 +1,26 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+	mkdir -vp obj-x86_64-linux-gnu && cd obj-x86_64-linux-gnu && \
+		../build-libs.sh
+	dh_auto_configure -- -DBUILD_TESTING:BOOL=OFF -DUSE_SYSTEM_BPF_BCC=0
+
+STRIP_CMD=strip --keep-symbol=BEGIN_trigger --keep-symbol=END_trigger --remove-section=.comment --remove-section=.note
+override_dh_strip:
+	dh_strip -Xbpftrace # -Xbpftrace-aotrt
+	$(STRIP_CMD) debian/bpftrace/usr/bin/bpftrace
+	#$(STRIP_CMD) debian/bpftrace/usr/bin/bpftrace-aotrt
+
+override_dh_auto_install:
+	dh_auto_install
+	rm -rf debian/bpftrace/usr/share/bpftrace/tools/doc
+
+	# Move binaries to /usr/sbin
+	mkdir -p debian/bpftrace/usr/sbin
+	mv debian/bpftrace/usr/share/bpftrace/tools/*.bt debian/bpftrace/usr/sbin
+	rm -rf debian/bpftrace/usr/share/bpftrace/tools/old
+	rmdir debian/bpftrace/usr/share/bpftrace/tools \
+	      debian/bpftrace/usr/share/bpftrace
