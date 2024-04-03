@@ -4,6 +4,37 @@ OSSO build of bpftrace
 This enables builds for bpftrace 0.17.1 for *Ubuntu/Jammy*. Also
 includes *Netflix* *bpftop* (v0.4.0) in /usr/sbin.
 
+-----------
+xz missing?
+-----------
+
+If you notice that you don't have ``xz`` you can install ``xz-utils``::
+
+    $ sudo /usr/bin/bpftrace -e 'BEGIN{exit()}'
+    tar (child): xz: Cannot exec: No such file or directory
+    tar (child): Error is not recoverable: exiting now
+    tar: Child returned status 2
+    tar: Error is not recoverable: exiting now
+    Attaching 1 probe...
+
+However, it appears that this might not be needed at all:
+
+https://patchwork.kernel.org/project/linux-kbuild/patch/20200205154629.GA1257054@kroah.com/
+
+So, to silence the error, you can:
+
+- Install the right kernel headers (``linux-headers-$(uname -r)``).
+
+- Install xz-utils, run it once and see that the files are cached here:
+  ``/tmp/kheaders-5.15.0-92-generic/``
+
+- Or do this workaround::
+
+    mkdir /root/bpftrace-workaround/include/linux
+    touch /root/bpftrace-workaround/include/linux/kconfig.h
+
+    BPFTRACE_KERNEL_SOURCE=/root/bpftrace-workaround bpftrace -e 'BEGIN{exit()}'
+
 
 ------------
 Docker build
@@ -84,5 +115,3 @@ EXAMPLE
       END {
               clear(@);
       }
-
-

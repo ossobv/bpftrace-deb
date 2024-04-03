@@ -27,7 +27,7 @@ Vcs-Browser: https://salsa.debian.org/debian/bpftrace
 Package: bpftrace
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
-Recommends: libc6-dev
+Recommends: libc6-dev xz-utils
 Description: high-level tracing language for Linux eBPF
  BPFtrace is a high-level tracing language for Linux enhanced Berkeley
  Packet Filter (eBPF) available in recent Linux kernels (4.x). BPFtrace
